@@ -17,10 +17,6 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: 'modules/dashboard/dashboard.module#DashboardModule',
-      },
-      {
-        path: 'login',
-        loadChildren: 'modules/account/account.module#AccountModule'
       }
     ]
   }
