@@ -12,7 +12,7 @@ export class NavigationBarComponent {
 
   //#region Properties
 
-  // Account property.
+  // account property.
   @Input('profile')
   public profile: ProfileViewModel;
 

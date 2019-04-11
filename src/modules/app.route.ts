@@ -15,6 +15,10 @@ export const routes: Routes = [
         redirectTo: '/dashboard'
       },
       {
+        path: 'login',
+        loadChildren: 'modules/account/login.module#LoginModule'
+      },
+      {
         path: 'dashboard',
         loadChildren: 'modules/dashboard/dashboard.module#DashboardModule',
       }
