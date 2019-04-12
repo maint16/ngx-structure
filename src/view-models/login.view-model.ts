@@ -3,11 +3,11 @@ export class LoginViewModel{
   //#region Properties
 
   // account email address.
-  public email: string;
+  public username: string;
 
   // account password.
   public password: string;
 
-  //#endrgion
+  //#endregion
 
 }

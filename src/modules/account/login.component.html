@@ -1,3 +1,30 @@
 <div>
+  <table width="50%">
+    <tr>
+      <td>
+        <label ><b>Username</b></label>
+      </td>
+      <td>
+        <input type="text" placeholder="Enter Username"
+               [(ngModel)]="model.username"
+               required>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label ><b>Password</b></label>
+      </td>
+      <td>
+        <input type="password"
+               [(ngModel)]="model.password"
+               placeholder="Enter Password"required>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button type="button" (click)="ngOnClick()">Login</button>
+      </td>
+    </tr>
+  </table>
 
 </div>
