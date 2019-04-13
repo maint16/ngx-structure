@@ -1,0 +1,45 @@
+<div>
+  <table>
+    <tr>
+      <td colspan="2">
+        <h3>Register</h3>
+      </td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><input type="text"
+        [(ngModel)]="registerModel.email"></td>
+    </tr>
+    <tr>
+      <td>First Name</td>
+      <td><input type="text"
+      [(ngModel)]="registerModel.firstName"></td>
+    </tr>
+    <tr>
+      <td>LastName</td>
+      <td><input type="text"
+      [(ngModel)]="registerModel.lastName"></td>
+    </tr>
+    <tr>
+      <td>Phone Number</td>
+      <td><input type="text"
+      [(ngModel)]="registerModel.phoneNumber"></td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td><input type="text"
+      [(ngModel)]="registerModel.address"></td>
+    </tr>
+    <tr>
+      <td>Birthday</td>
+      <td><input type="date"
+      [(ngModel)]="registerModel.birthday"></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button (click)="RegisterUser()">Register</button>
+      </td>
+    </tr>
+
+  </table>
+</div>

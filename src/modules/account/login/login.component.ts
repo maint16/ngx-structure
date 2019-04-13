@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
-import {IUserService} from '../../interfaces/services/user-service.interface';
-import {LoginViewModel} from '../../view-models/login.view-model';
+import {IUserService} from '../../../interfaces/services/user-service.interface';
+import {LoginViewModel} from '../../../view-models/account/login.view-model';
 
 @Component ({
   selector: 'login',

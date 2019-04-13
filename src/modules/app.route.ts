@@ -16,7 +16,11 @@ export const routes: Routes = [
       },
       {
         path: 'login',
-        loadChildren: 'modules/account/login.module#LoginModule'
+        loadChildren: 'modules/account/login/login.module#LoginModule'
+      },
+      {
+        path: 'register',
+        loadChildren: 'modules/account/register/register.module#RegisterModule'
       },
       {
         path: 'dashboard',
