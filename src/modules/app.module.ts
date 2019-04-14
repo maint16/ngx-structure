@@ -14,6 +14,7 @@ import {HttpLoaderFactory} from '../factories/ngx-translate.factory';
 import {ResolveModule} from '../resolves/resolve.module';
 import {GuardModule} from '../guards/guard.module';
 import {AppConfigService} from '../services/app-config.service';
+import {NgxWebstorageModule} from 'ngx-webstorage';
 
 //#region Factory functions
 
@@ -33,6 +34,7 @@ export function appConfigServiceFactory(appConfigService: AppConfigService) {
     BrowserAnimationsModule, // required animations module
     MomentModule,
     HttpClientModule,
+    NgxWebstorageModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

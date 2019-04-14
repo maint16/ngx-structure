@@ -1,9 +1,9 @@
 /**
  * Created by Linh Nguyen on 6/7/2017.
  */
-import {Inject, Injectable} from "@angular/core";
-import {CanActivate, Router} from "@angular/router";
-import {IAuthenticationService} from "../interfaces/services/authentication-service.interface";
+import {Inject, Injectable} from '@angular/core';
+import {CanActivate, Router} from '@angular/router';
+import {IAuthenticationService} from '../interfaces/services/authentication-service.interface';
 
 @Injectable()
 export class IsAuthorizedGuard implements CanActivate {
@@ -14,7 +14,8 @@ export class IsAuthorizedGuard implements CanActivate {
   * */
   public constructor(
     @Inject('IAuthenticationService') private authenticationService: IAuthenticationService,
-    private router: Router) {}
+    private router: Router) {
+  }
 
   //#endregion
 

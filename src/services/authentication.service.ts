@@ -1,11 +1,12 @@
 /**
  * Created by Linh Nguyen on 6/7/2017.
  */
-import {Injectable} from "@angular/core";
-import {AuthorizationToken} from "../models/authorization-token";
-import {Router} from "@angular/router";
-import {IAuthenticationService} from "../interfaces/services/authentication-service.interface";
-import {AppSettings} from "../constants/app-settings.constant";
+import {Injectable} from '@angular/core';
+import {AuthorizationToken} from '../models/authorization-token';
+import {Router} from '@angular/router';
+import {IAuthenticationService} from '../interfaces/services/authentication-service.interface';
+import {AppSettings} from '../constants/app-settings.constant';
+import {LocalStorageService} from 'ngx-webstorage';
 
 @Injectable()
 export class AuthenticationService implements IAuthenticationService {
@@ -15,7 +16,8 @@ export class AuthenticationService implements IAuthenticationService {
   /*
   * Initiate component with injectors.
   * */
-  public constructor(private router: Router, private appSettings: AppSettings){
+  public constructor(private router: Router, private appSettings: AppSettings,
+                     private storageService: LocalStorageService) {
 
   }
 
@@ -27,23 +29,25 @@ export class AuthenticationService implements IAuthenticationService {
    * Store identity into local storage.
    * */
   public setAuthorization(identity: AuthorizationToken): void {
-    localStorage.setItem(this.appSettings.identityStorage, JSON.stringify(identity));
+    this.storageService.store(this.appSettings.identityStorage, JSON.stringify(identity));
+
   }
 
   /*
    * Remove identity from cache.
    * */
   public clearIdentity(): void {
-    localStorage.removeItem(this.appSettings.identityStorage);
+    this.storageService.clear(this.appSettings.identityStorage);
+
   }
 
   /*
   * Get authorization token from local storage.
   * */
-  public getAuthorization(): AuthorizationToken{
+  public getAuthorization(): AuthorizationToken {
 
     // Get authorization token from local storage.
-    let authorizationToken = localStorage.getItem(this.appSettings.identityStorage);
+    let authorizationToken = this.storageService.retrieve(this.appSettings.identityStorage);
 
     // Authorization is invalid.
     if (authorizationToken == null || authorizationToken.length < 1)
@@ -55,7 +59,7 @@ export class AuthenticationService implements IAuthenticationService {
   /*
   * Check whether authorization token is valid or not.
   * */
-  public isAuthorizationValid(authorizationToken: AuthorizationToken): boolean{
+  public isAuthorizationValid(authorizationToken: AuthorizationToken): boolean {
 
     // Token is not valid.
     if (authorizationToken == null)
@@ -75,8 +79,9 @@ export class AuthenticationService implements IAuthenticationService {
   /*
   * Redirect to login page.
   * */
-  public redirectToLogin(): void{
+  public redirectToLogin(): void {
     this.router.navigate(['/login']);
   }
+
   //#endregion
 }

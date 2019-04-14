@@ -1,6 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {RegisterViewModel} from '../../../view-models/account/register.view-model';
 import {IUserService} from '../../../interfaces/services/user-service.interface';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'register',
@@ -9,7 +10,7 @@ import {IUserService} from '../../../interfaces/services/user-service.interface'
 export class RegisterComponent {
   public registerModel: RegisterViewModel;
 
-  public constructor(@Inject('IUserService') public userService: IUserService) {
+  public constructor(@Inject('IUserService') public userService: IUserService, public router: Router) {
     this.registerModel = new RegisterViewModel();
   }
 
@@ -17,7 +18,7 @@ export class RegisterComponent {
     this.userService
       .registerAsync(this.registerModel)
       .subscribe(x => {
-        alert('register successfully');
+        this.router.navigate(['/dashboard']);
       });
   }
 }
