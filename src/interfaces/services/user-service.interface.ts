@@ -19,5 +19,9 @@ export interface IUserService {
 
   GetUserByIdAsync(id: string): Observable<UserViewModel>;
 
+  AddUserAsync(userModel: UserViewModel): Observable<UserViewModel>;
+
+  EditUserAsync(userId: string, userModel: UserViewModel): Observable<UserViewModel>;
+
   //#endregion
 }

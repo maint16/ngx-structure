@@ -1,41 +1,45 @@
-<h3 align="center">User Detail</h3>
+<h3 *ngIf="userId!= undefined" align="center">Edit User</h3>
+<h3  *ngIf="userId== undefined" align="center">Add User</h3>
 <div class="container">
   <form>
     <div class="form-group">
       <div class="col-md-2">
         <label>First Name</label></div>
-      <div class="col-md-3">
-        <input type="text" class="form-control"/>
+      <div class="col-md-4">
+        <input [(ngModel)]="userViewModel.firstName"
+               [ngModelOptions]="{standalone: true}"
+               type="text" class="form-control"/>
       </div>
-
-    </div>
-
-    <div class="form-group">
       <div class="col-md-2">
         <label>Last Name</label></div>
-      <div class="col-md-3">
-        <input type="text" class="form-control"/>
+      <div class="col-md-4">
+        <input [(ngModel)]="userViewModel.lastName"
+               [ngModelOptions]="{standalone: true}"
+               type="text" class="form-control"/>
       </div>
 
     </div>
+
 
     <div class="form-group">
       <div class="col-md-2">
         <label>Phone Number</label></div>
-      <div class="col-md-3">
-        <input type="text" class="form-control"/>
+      <div class="col-md-4">
+        <input [(ngModel)]="userViewModel.phoneNumber"
+               [ngModelOptions]="{standalone: true}"
+               type="text" class="form-control"/>
       </div>
-
-    </div>
-
-    <div class="form-group">
       <div class="col-md-2">
         <label>Address</label></div>
-      <div class="col-md-3">
-        <input type="text" class="form-control"/>
+      <div class="col-md-4">
+        <input [(ngModel)]="userViewModel.address"
+               [ngModelOptions]="{standalone: true}"
+               type="text" class="form-control"/>
       </div>
-
     </div>
+
+    <button (click)="AddOrEditUser()">Save</button>
+
   </form>
 </div>
 

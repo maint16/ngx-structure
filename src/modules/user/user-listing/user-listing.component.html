@@ -1,0 +1,28 @@
+<div class="container">
+  <h3 align="center">User Listing</h3>
+  <a routerLink="/user/add-user">Register User</a>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Address</th>
+      <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of userList">
+      <td>{{ user.lastName }} {{user.firstName}}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.phoneNumber}}</td>
+      <td>{{ user.address }}</td>
+      <td>
+        <a [routerLink]="['/user/edit-user',user.id]">Edit</a>
+
+        <button>Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

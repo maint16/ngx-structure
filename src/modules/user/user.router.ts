@@ -36,7 +36,12 @@ const routes: Routes = [
         component: ProfileComponent
       },
       {
-        path: 'user-detail',
+        path: 'edit-user/:id',
+        pathMatch: 'full',
+        component: UserDetailComponent
+      },
+      {
+        path: 'add-user',
         pathMatch: 'full',
         component: UserDetailComponent
       }

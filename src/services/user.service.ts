@@ -39,7 +39,7 @@ export class UserService implements IUserService {
   }
 
   GetUserProfileAsync(accessToken: string): Observable<ProfileViewModel> {
-    const url = 'http://frqxxcemawzbe3l8i-mock.stoplight-proxy.io/api/profile/' + accessToken;
+    const url = 'http://frqxxcemawzbe3l8i-mock.stoplight-proxy.io/api/user/profile/' + accessToken;
     return this.httpClient
       .get<ProfileViewModel>(url);
   }
@@ -57,6 +57,18 @@ export class UserService implements IUserService {
     const url = 'http://frqxxcemawzbe3l8i-mock.stoplight-proxy.io/api/user/' + id;
     return this.httpClient
       .get<UserViewModel>(url);
+  }
+
+  AddUserAsync(userModel: UserViewModel): Observable<UserViewModel> {
+    const url = 'http://frqxxcemawzbe3l8i-mock.stoplight-proxy.io/api/user';
+    return this.httpClient
+      .post<UserViewModel>(url, userModel);
+  }
+
+  EditUserAsync(userId: string, userModel: UserViewModel): Observable<UserViewModel> {
+    const url = 'http://frqxxcemawzbe3l8i-mock.stoplight-proxy.io/api/user/' + userId;
+    return this.httpClient
+      .put<UserViewModel>(url, userModel);
   }
 
   //#endregion
