@@ -32,7 +32,7 @@ export class LoginComponent {
         }),
         flatMap(x => {
           return this.userService
-            .GetUserProfileAsync(x.code);
+            .getUserProfileAsync(x.code);
         })
       )
       .subscribe(x => {

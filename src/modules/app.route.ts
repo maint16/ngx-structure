@@ -12,7 +12,7 @@ export const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/user/user-listing'
+        redirectTo: '/relationship-group/relationship-group-listing'
       },
       {
         path: 'login',
@@ -29,6 +29,11 @@ export const routes: Routes = [
       {
         path: 'user',
         loadChildren: 'modules/user/user.module#UserModule',
+      },
+      {
+        path: 'relationship-group',
+        loadChildren: 'modules/relationship-group/relationship-group.module#RelationshipGroupModule',
+
       }
     ]
   }

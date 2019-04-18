@@ -5,6 +5,7 @@ import {ProfileViewModel} from '../../view-models/profile.view-model';
 import {AuthorizationToken} from '../../models/authorization-token';
 import {SearchResultViewModel} from '../../view-models/common/search-result-view-model';
 import {UserViewModel} from '../../view-models/user/user.view-model';
+import {SearchUserViewModel} from '../../view-models/user/search-user-view-model';
 
 export interface IUserService {
   //#region methods
@@ -13,15 +14,15 @@ export interface IUserService {
 
   registerAsync(registerViewModel: RegisterViewModel): Observable<ProfileViewModel>;
 
-  GetUserProfileAsync(accessToken: string): Observable<ProfileViewModel>;
+  getUserProfileAsync(accessToken: string): Observable<ProfileViewModel>;
 
-  SearchUserAsync(): Observable<SearchResultViewModel>;
+  searchUserAsync(searchUserViewModel: SearchUserViewModel): Observable<SearchResultViewModel<UserViewModel>>;
 
-  GetUserByIdAsync(id: string): Observable<UserViewModel>;
+  getUserByIdAsync(id: string): Observable<UserViewModel>;
 
-  AddUserAsync(userModel: UserViewModel): Observable<UserViewModel>;
+  addUserAsync(userModel: UserViewModel): Observable<UserViewModel>;
 
-  EditUserAsync(userId: string, userModel: UserViewModel): Observable<UserViewModel>;
+  editUserAsync(userId: string, userModel: UserViewModel): Observable<UserViewModel>;
 
   //#endregion
 }

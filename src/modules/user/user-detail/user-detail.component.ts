@@ -25,17 +25,17 @@ export class UserDetailComponent {
     this.activeRouter.params.subscribe(x => {
       this.userId = x.id;
     });
-    this.GetUserDetail();
+    this.getUserDetail();
   }
 
   //#endregion
 
   //#region Methods
-  public GetUserDetail(): void {
+  public getUserDetail(): void {
 
     if (this.userId !== undefined) {
       this.userService
-        .GetUserByIdAsync(this.userId)
+        .getUserByIdAsync(this.userId)
         .subscribe(x => {
           this.userViewModel = x;
         });
@@ -44,19 +44,19 @@ export class UserDetailComponent {
 
   }
 
-  public AddOrEditUser(): void {
+  public addOrEditUser(): void {
 
     if (this.userId === undefined) {
       // Add User
       this.userService
-        .AddUserAsync(this.userViewModel)
+        .addUserAsync(this.userViewModel)
         .subscribe(x => {
           this.userViewModel = x;
         });
     } else {
       // Edit User
       this.userService
-        .EditUserAsync(this.userId, this.userViewModel)
+        .editUserAsync(this.userId, this.userViewModel)
         .subscribe(x => {
           this.userViewModel = x;
         });

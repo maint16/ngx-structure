@@ -1,6 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {IUserService} from '../../../interfaces/services/user-service.interface';
 import {UserViewModel} from '../../../view-models/user/user.view-model';
+import {SearchUserViewModel} from '../../../view-models/user/search-user-view-model';
 
 @Component({
   selector: 'user-listing',
@@ -15,15 +16,16 @@ export class UserListingComponent {
 
   //#region Contructor
   public constructor(@Inject('IUserService') public userService: IUserService) {
-    this.SearchUser();
+    this.searchUser();
   }
 
   //#endregion
 
   //#region Methods
-  public SearchUser(): void {
+  public searchUser(): void {
+    const searchUserViewModel = new SearchUserViewModel();
     this.userService
-      .SearchUserAsync()
+      .searchUserAsync(searchUserViewModel)
       .subscribe(x => {
         this.userList = x.records;
       });

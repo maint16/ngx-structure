@@ -10,6 +10,7 @@ import {AuthorizationToken} from '../models/authorization-token';
 import {PaginationViewModel} from '../view-models/common/pagination-view-model';
 import {SearchResultViewModel} from '../view-models/common/search-result-view-model';
 import {UserViewModel} from '../view-models/user/user.view-model';
+import {SearchUserViewModel} from '../view-models/user/search-user-view-model';
 
 @Injectable()
 export class UserService implements IUserService {
@@ -23,7 +24,7 @@ export class UserService implements IUserService {
 
   //#region Methods
   public loginAsync(username: string, password: string): Observable<AuthorizationToken> {
-    let url = 'http://frqxxcemawzbe3l8i-mock.stoplight-proxy.io/api/login';
+    let url = 'http://localhost:4010/api/login';
     const loginViewModel = new LoginViewModel();
     loginViewModel.username = username;
     loginViewModel.password = password;
@@ -33,40 +34,43 @@ export class UserService implements IUserService {
   }
 
   registerAsync(registerViewModel: RegisterViewModel): Observable<ProfileViewModel> {
-    let url = 'http://frqxxcemawzbe3l8i-mock.stoplight-proxy.io/api/register';
+    let url = 'http://localhost:4010/api/register';
     return this.httpClient
       .post<ProfileViewModel>(url, registerViewModel);
   }
 
-  GetUserProfileAsync(accessToken: string): Observable<ProfileViewModel> {
-    const url = 'http://frqxxcemawzbe3l8i-mock.stoplight-proxy.io/api/user/profile/' + accessToken;
+  getUserProfileAsync(accessToken: string): Observable<ProfileViewModel> {
+    const url = 'http://localhost:4010/api/user/profile/' + accessToken;
     return this.httpClient
       .get<ProfileViewModel>(url);
   }
 
-  SearchUserAsync(): Observable<SearchResultViewModel> {
-    const url = 'http://frqxxcemawzbe3l8i-mock.stoplight-proxy.io/api/user/search';
+  searchUserAsync(searchUserViewModel: SearchUserViewModel): Observable<SearchResultViewModel<UserViewModel>> {
+    const url = 'http://localhost:4010/api/user/search';
     const paginationViewModel = new PaginationViewModel();
     paginationViewModel.pageNumber = 1;
     paginationViewModel.pageSize = 30;
+
+    searchUserViewModel.pagination= paginationViewModel;
+
     return this.httpClient
-      .post<SearchResultViewModel>(url, paginationViewModel);
+      .post<SearchResultViewModel<UserViewModel>>(url, searchUserViewModel);
   }
 
-  GetUserByIdAsync(id: string): Observable<UserViewModel> {
-    const url = 'http://frqxxcemawzbe3l8i-mock.stoplight-proxy.io/api/user/' + id;
+  getUserByIdAsync(id: string): Observable<UserViewModel> {
+    const url = 'http://localhost:4010/api/user/' + id;
     return this.httpClient
       .get<UserViewModel>(url);
   }
 
-  AddUserAsync(userModel: UserViewModel): Observable<UserViewModel> {
-    const url = 'http://frqxxcemawzbe3l8i-mock.stoplight-proxy.io/api/user';
+  addUserAsync(userModel: UserViewModel): Observable<UserViewModel> {
+    const url = 'http://localhost:4010/api/user';
     return this.httpClient
       .post<UserViewModel>(url, userModel);
   }
 
-  EditUserAsync(userId: string, userModel: UserViewModel): Observable<UserViewModel> {
-    const url = 'http://frqxxcemawzbe3l8i-mock.stoplight-proxy.io/api/user/' + userId;
+  editUserAsync(userId: string, userModel: UserViewModel): Observable<UserViewModel> {
+    const url = 'http://localhost:4010/api/user/' + userId;
     return this.httpClient
       .put<UserViewModel>(url, userModel);
   }

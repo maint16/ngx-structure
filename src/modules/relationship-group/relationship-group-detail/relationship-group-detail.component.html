@@ -1,19 +1,19 @@
-<h3 *ngIf="userId!= undefined" align="center">Edit User</h3>
-<h3  *ngIf="userId== undefined" align="center">Add User</h3>
+<h3 *ngIf="relationshipGroupId!= undefined"  align="center">Edit Relationship Group</h3>
+<h3  *ngIf="relationshipGroupId== undefined"  align="center">Add Relationship Group</h3>
 <div class="container">
   <form>
     <div class="form-group">
       <div class="col-md-2">
-        <label>First Name</label></div>
+        <label>Id</label></div>
       <div class="col-md-4">
-        <input [(ngModel)]="userViewModel.firstName"
+        <input [(ngModel)]="relationshipGroup.id"
                [ngModelOptions]="{standalone: true}"
                type="text" class="form-control"/>
       </div>
       <div class="col-md-2">
-        <label>Last Name</label></div>
+        <label>Name</label></div>
       <div class="col-md-4">
-        <input [(ngModel)]="userViewModel.lastName"
+        <input [(ngModel)]="relationshipGroup.name"
                [ngModelOptions]="{standalone: true}"
                type="text" class="form-control"/>
       </div>
@@ -23,22 +23,22 @@
 
     <div class="form-group">
       <div class="col-md-2">
-        <label>Phone Number</label></div>
+        <label>Creator Id</label></div>
       <div class="col-md-4">
-        <input [(ngModel)]="userViewModel.phoneNumber"
+        <input [(ngModel)]="relationshipGroup.creatorId"
                [ngModelOptions]="{standalone: true}"
                type="text" class="form-control"/>
       </div>
       <div class="col-md-2">
-        <label>Address</label></div>
+        <label>Created Time</label></div>
       <div class="col-md-4">
-        <input [(ngModel)]="userViewModel.address"
+        <input [(ngModel)]="relationshipGroup.createdTime"
                [ngModelOptions]="{standalone: true}"
                type="text" class="form-control"/>
       </div>
     </div>
 
-    <button (click)="addOrEditUser()">Save</button>
+    <button (click)="addOrEditRelationshipGroup()">Save</button>
 
   </form>
 </div>

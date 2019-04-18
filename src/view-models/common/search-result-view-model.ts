@@ -1,7 +1,7 @@
 import {UserViewModel} from '../user/user.view-model';
 
-export class SearchResultViewModel {
+export class SearchResultViewModel<T> {
   public total: number;
-  public records: UserViewModel[];
+  public records: T[];
 
 }

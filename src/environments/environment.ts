@@ -6,5 +6,5 @@ import 'zone.js/dist/zone-error';
 
 export const environment = {
   production: false,
-  baseUrl: 'http://frqxxcemawzbe3l8i-mock.stoplight-proxy.io/api'
+  baseUrl: 'http://localhost:4010/api'
 };
