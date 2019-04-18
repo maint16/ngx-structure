@@ -6,6 +6,7 @@ import {IUserService} from '../../../interfaces/services/user-service.interface'
 import {SearchUserViewModel} from '../../../view-models/user/search-user-view-model';
 import {SearchResultViewModel} from '../../../view-models/common/search-result-view-model';
 import {UserViewModel} from '../../../view-models/user/user.view-model';
+import {forkJoin} from 'rxjs/internal/observable/forkJoin';
 
 @Component({
   selector: 'relationship-group-listing',
@@ -16,6 +17,12 @@ export class RelationshipGroupListingComponent {
 
   // #region Properties
   public relationshipGroupList: RelationshipGroupViewModel[];
+
+  // Count all user who active in system
+  public countUser: number;
+
+  // Count all relationship group that active in system.
+  public countRelationshipGroup: number;
   // @endregion
 
   // #region Contructor
@@ -23,6 +30,8 @@ export class RelationshipGroupListingComponent {
                      @Inject('IUserService') public userService: IUserService) {
 
     this.searchRelationshipGroup();
+
+    this.statisticSystem();
   }
 
   // #endregion
@@ -56,6 +65,25 @@ export class RelationshipGroupListingComponent {
         this.relationshipGroupList = relationGroups;
       });
     //
+  }
+
+// Statistic all resource in system : users, relationship groups.
+  public statisticSystem(): void {
+
+    const requestArray = [];
+    requestArray.push(this.relationshipGroupService.searchRelationshipGroup());
+    requestArray.push(this.userService.searchUserAsync(new SearchUserViewModel()));
+
+    forkJoin(requestArray)
+      .pipe(
+        map(([relationshipGroupSearchResult, userSearchResult]) => {
+          return {relationshipGroupSearchResult, userSearchResult};
+        })
+      )
+      .subscribe(({relationshipGroupSearchResult, userSearchResult}) => {
+        this.countUser = userSearchResult.records.length;
+        this.countRelationshipGroup = userSearchResult.records.length;
+      });
   }
 
 
